@@ -8,6 +8,7 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 import { LensProvider, LensConfig, production } from "@lens-protocol/react-web";
 import { bindings as wagmiBindings } from "@lens-protocol/wagmi";
 
+// Polygon تهيئة الشبكة التي ستقوم المحفظة بالإتصال بها وهي شبكة
 const { publicClient, webSocketPublicClient } = configureChains(
   [polygonMumbai, polygon],
   [publicProvider()]
@@ -26,8 +27,12 @@ const config = createConfig({
   ],
 });
 
+// إعداد البروتوكول في المشروع
 const lensConfig: LensConfig = {
+  // يقوم بتوفير الربط والتوقيع مع الحساب
   bindings: wagmiBindings(),
+  // تحديد البيئة التي سيتعامل معها المشروع
+  // production وإذا كان حساب اساسي اجعلها development إذا كان على حساب تجريبي قم بإستخدام
   environment: production,
 };
 
